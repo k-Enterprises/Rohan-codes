@@ -6,5 +6,7 @@ int main() {
 	cout << "Please enter your name: ";
 	cin >> name;
 	cout << "Your name is: " << name << endl;
+	name[7] = 'o';
+	cout << "Your name is: " << name << endl;
 return 0;
 }
