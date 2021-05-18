@@ -18,7 +18,9 @@ int main() {
 	char str[100];
 	cout << "Enter the string: ";
 	cin >> str;
+	cout << strlen(str) << endl;
 	removeX(str);
 	cout << str << endl;
+	cout << strlen(str) << endl;
 return 0;
 }
