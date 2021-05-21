@@ -82,5 +82,7 @@ int main() {
 	int * arr2 = new int[m];
 	takeInput(arr2, m);
 	printIntersection(arr, n, arr2, m);
+	delete [] arr;
+	delete [] arr2;
 return 0;
 }
