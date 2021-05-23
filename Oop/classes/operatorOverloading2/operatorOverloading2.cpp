@@ -10,5 +10,12 @@ int main() {
 	Fraction f2 = ++f1; // function increaments f1 and copy it to f2
 	f2.display();
 	f1.display();
+	Fraction f3 = f1++;
+	f1.display();
+	f3.display();
+	f3 += f1;
+	f3.display();
+	(f3 += f2) += f2;
+	f3.display();
 return 0;
 }

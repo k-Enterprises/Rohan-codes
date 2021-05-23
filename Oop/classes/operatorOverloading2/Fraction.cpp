@@ -24,6 +24,20 @@ class Fraction {
 		simplify();
 	return *this;
 	}
+	Fraction operator++(int) { // int is used to diffrentiate between post and pre increment
+		Fraction fNew(this -> numerator, this -> denominator);
+		this -> numerator = this -> numerator + this -> denominator;
+		simplify();
+		fNew.simplify();
+	return fNew;
+	}
+	Fraction & operator+=(Fraction f) { // return by reference for memory buffer 
+		int lcm = this -> denominator * f.denominator;
+		this -> numerator = (this -> numerator * f.denominator) + (f.numerator * this -> denominator);
+		this -> denominator = lcm;
+		simplify();
+	return *this; // memory buffer will be same as of 'this'
+	}
 	void display() const {
 		cout << this -> numerator << " / " << this -> denominator << endl;
 	}
