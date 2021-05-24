@@ -24,6 +24,25 @@ Node * takeInput() {
 return head;
 }
 
+Node * takeInputOptimized() {
+	int data;
+	cin >> data;
+	Node * head = NULL;
+	Node * tail = NULL;
+	while(data != -1) {
+		Node * newNode = new Node(data);
+		if(head == NULL) {
+			head = newNode;
+			tail = newNode;
+		} else {
+			tail -> next = newNode;
+			tail = newNode;
+		}
+		cin >> data;
+	}
+return head;
+}
+
 void printList(Node * head) {
 	Node * temp = head; // always create a temp in case of linked list so that we don't loose head
 	while(temp != NULL) {
@@ -34,7 +53,7 @@ void printList(Node * head) {
 }
 
 int main() {
-	Node * head = takeInput();
+	Node * head = takeInputOptimized();
 	printList(head);
 	// statically 
 	/*Node n1(1);
@@ -55,7 +74,8 @@ int main() {
 	cout << "Address of n1: " <<&n1 << endl;
 	cout << head -> data << endl;*/
 
-	//dynamically 
+	//dynamically
+	/*
 	Node * n6 = new Node(6);
 	Node * head2 = n6;
 	Node * n7 = new Node(7);
@@ -68,5 +88,6 @@ int main() {
 	n9 -> next = n10;
 	cout << "Dynamic Node Linked list: ";
 	printList(head2);
+	*/
 return 0;
 }
