@@ -30,10 +30,11 @@ class Queue {
 		void enqueue(T const &value) {
 			if(this -> size == this -> capacity) {
 				T * newData = new T[this -> capacity * 2];
+				int counter = 0;
 				for(int i = this -> nextIndex; i < size; i ++) {
-					newData[i] = data[i];
+					newData[counter] = data[i];
+					counter ++;
 				}
-				int counter = this -> size - this -> nextIndex;
 				for(int i = 0; i < this -> nextIndex; i ++) {
 					newData[counter] = data[i];
 					counter ++;

@@ -11,9 +11,10 @@ int main() {
 	q.enqueue(50);
 	cout << "Front: " << q.front() << endl;
 	cout << "Size:" << q.getSize() << endl;
+	/*cout << "Dequeue: " << q.dequeue() << endl;
 	cout << "Dequeue: " << q.dequeue() << endl;
 	cout << "Dequeue: " << q.dequeue() << endl;
-	cout << "Dequeue: " << q.dequeue() << endl;
+	*/
 	cout << "Front: " << q.front() << endl;
 	cout << "Size: " << q.getSize() << endl;
 	cout << "Dequeue: " << q.dequeue() << endl;
