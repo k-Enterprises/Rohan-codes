@@ -1,6 +1,48 @@
 #include <iostream>
+#include <queue>
 #include "TreeNode.h"
 using namespace std;
+
+TreeNode<int> * takeInputLevelWise() {
+	int rootData;
+	cout << "Enter the root data: ";
+	cin >> rootData;
+	TreeNode<int> * root = new TreeNode<int>(rootData);
+	queue<TreeNode<int>*> pendingNodes;
+	pendingNodes.push(root);
+	while(pendingNodes.size() != 0) {
+		TreeNode<int> * front = pendingNodes.front();
+		pendingNodes.pop();
+		int numChildren;
+		cout << "Enter the number of children of " << front -> data << ": ";
+		cin >> numChildren;
+		for(int i = 0; i < numChildren; i ++) {
+			int childData;
+			cout << "Enter the data of " << i << "th child of " << front -> data << ": ";
+			cin >> childData;
+			TreeNode<int> * child = new TreeNode<int>(childData);
+			front -> children.push_back(child);
+			pendingNodes.push(child);
+		}
+	}
+return root;
+}
+
+void printTreeLevelWise(TreeNode<int> * root) {
+	queue<TreeNode<int>*> pendingNodes;
+	pendingNodes.push(root);
+	while(pendingNodes.size() != 0) {
+		TreeNode<int> * front = pendingNodes.front();
+		pendingNodes.pop();
+		cout << front -> data << ": ";
+		for(int i = 0; i < front -> children.size(); i ++) {
+			cout << front -> children[i] -> data << ", ";
+			pendingNodes.push(front -> children[i]);
+		}
+		cout << endl;
+	}
+return;
+}
 
 void printTree(TreeNode<int> * root) {
 	if(root == NULL) { // not a base case it is an edge case !
@@ -40,7 +82,10 @@ int main() {
 	root -> children.push_back(node2);
 	printTree(root);
 	*/
-	TreeNode<int> * root = takeInput();
+	TreeNode<int> * root = takeInputLevelWise();
 	printTree(root);
+	cout << endl;
+	cout << endl;
+	printTreeLevelWise(root);
 return 0;
 }
