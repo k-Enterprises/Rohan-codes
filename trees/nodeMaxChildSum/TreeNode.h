@@ -1,0 +1,23 @@
+#include <vector>
+using namespace std;
+template <typename T>
+class TreeNode {
+	public :
+		T data;
+		vector<TreeNode<T>*> children;
+		TreeNode(T data) {
+			this -> data = data;
+		}
+		~TreeNode() {
+			for(int i = 0; i < this -> children.size(); i ++) {
+				delete this -> children[i];
+			}
+		}
+};
+
+template <typename T>
+class Pair {
+	public : 
+		int sum;
+		TreeNode<T> * max;
+};
