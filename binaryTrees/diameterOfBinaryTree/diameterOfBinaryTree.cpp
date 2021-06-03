@@ -54,9 +54,29 @@ int diameter(BinaryTreeNode<int> * root) {
 return max(option1, max(option2, option3));
 }
 
+Pair<int> diameterHeight(BinaryTreeNode<int> * root) { // when you require 2 or more factors to solve the problem use pair class to ease it
+	if(root == NULL) {
+		Pair<int> p;
+		p.height = 0;
+		p.diameter = 0;
+		return p;
+	}
+	Pair<int> left = diameterHeight(root -> left);
+	Pair<int> right = diameterHeight(root -> right);
+	Pair<int> ans;
+	ans.height = 1 + max(left.height, right.height);
+	ans.diameter = max((left.height + right.height), max(left.diameter, right.diameter));
+return ans;
+}
+
+int diameterOfBinaryTreeBetter(BinaryTreeNode<int> * root) {
+	Pair<int> ans = diameterHeight(root);
+return ans.diameter;
+}
+
 int main() {
 	BinaryTreeNode<int> * root = takeInput();
-	int ans = diameter(root);
+	int ans = diameterOfBinaryTreeBetter(root);
 	cout << "Diameter of the binary tree is: " << ans << endl;
 return 0;
 }

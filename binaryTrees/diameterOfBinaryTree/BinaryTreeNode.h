@@ -14,3 +14,10 @@ class BinaryTreeNode {
 			delete this -> right;
 		}
 };
+
+template <typename T>
+class Pair {
+	public :
+		T height;
+		T diameter;
+};
