@@ -3,9 +3,9 @@ using namespace std;
 template <typename V>
 class MapNode {
 	public :
-		V value
+		V value;
 		string key;
-		Node * next;
+		MapNode * next;
 		MapNode(string key, V value) {
 			this -> value = value;
 			this -> key = key;
@@ -23,7 +23,7 @@ class OurMap {
 		int count;
 		int numBuckets;
 		int getBucketIndex(string key) {
-			int hasCode = 0;
+			int hashCode = 0;
 			int currentCoeff = 1;
 			for(int i = key.length() - 1; i >= 0; i --) {
 				hashCode += (key[i] * currentCoeff) % numBuckets;
@@ -32,10 +32,33 @@ class OurMap {
 			}
 			return hashCode % numBuckets;
 		}
+		void rehash() {
+			MapNode<V> ** temp = buckets;
+			count = 0;
+			buckets = new MapNode<V>*[numBuckets * 2];
+			for(int i = 0; i < 2 * numBuckets; i ++) {
+				buckets[i] = NULL;
+			}
+			int oldNumBuckets = numBuckets;
+			numBuckets *= 2;
+			for(int i = 0; i < oldNumBuckets; i ++) {
+				MapNode<V> * head = temp[i];
+				while(head != NULL) {
+					string key = head -> key;
+					V value = head -> value;
+					this -> insert(key, value);
+					head = head -> next;
+				}
+			}
+			for(int i = 0; i < oldNumBuckets; i ++) {
+				delete temp[i];
+			}
+			delete [] temp;
+		}
 	public :
 		OurMap() {
 			this -> count = 0;
-			this -> numBuckets = 5
+			this -> numBuckets = 5;
 			this -> buckets = new MapNode<V>*[numBuckets];
 			for(int i = 0; i < this -> numBuckets; i ++) {
 				this -> buckets[i] = NULL;
@@ -65,6 +88,10 @@ class OurMap {
 			newNode -> next = head;
 			buckets[bucketIndex] = newNode;
 			this -> count ++;
+			double loadFactor = 1.0 * (count) / numBuckets;
+			if(loadFactor > 0.7) {
+				rehash();
+			}
 		}
 		V getValue(string const &key) const {
 			int bucketIndex = getBucketIndex(key);
@@ -98,5 +125,8 @@ class OurMap {
 				head = head -> next;
 			}
 			return 0;
+		}
+		double getLoadFactor() {
+			return (1.0 * this -> count) / numBuckets;
 		}
 };
