@@ -1,9 +1,9 @@
 #include <iostream>
-#include "PriorityQueue.h"
+#include "MaxPriorityQueue.h"
 using namespace std;
 
 int main() {
-	PriorityQueue pq;
+	MaxPriorityQueue pq;
 	pq.insert(12);
 	pq.insert(6);
 	pq.insert(5);
@@ -13,12 +13,13 @@ int main() {
 	pq.insert(0);
 	pq.insert(14);
 	cout << "Size: " << pq.getSize() << endl;
-	cout << "Min: " << pq.getMin() << endl;
+	cout << "Max: " << pq.getMax() << endl;
 	cout << "The heap is: ";
 	pq.printCBT();
-	pq.removeMin();
+	/*pq.removeMin();
 	pq.removeMin();
 	cout << "The heap is: ";
 	pq.printCBT();
+	*/
 return 0;
 }
