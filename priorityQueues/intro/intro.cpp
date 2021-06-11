@@ -16,10 +16,9 @@ int main() {
 	cout << "Max: " << pq.getMax() << endl;
 	cout << "The heap is: ";
 	pq.printCBT();
-	/*pq.removeMin();
-	pq.removeMin();
+	pq.removeMax();
+	pq.removeMax();
 	cout << "The heap is: ";
 	pq.printCBT();
-	*/
 return 0;
 }

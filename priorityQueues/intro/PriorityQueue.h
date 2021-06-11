@@ -58,7 +58,7 @@ class PriorityQueue {
 			int l = (2 * pi) + 1;
 			int r = (2 * pi) + 2;
 			while(l <= pq.size() - 1) {
-				if(pq[pi] < pq[l] || pq[pi] < pq[r]) {
+				if(pq[pi] < pq[l] && pq[pi] < pq[r]) {
 					break;
 				}
 				int minIndex = getIndex(l, r);

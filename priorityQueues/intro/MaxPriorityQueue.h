@@ -10,6 +10,12 @@ class MaxPriorityQueue {
 			this -> pq[index2] = temp;
 		return;
 		}
+		int getMaxIndex(int l, int r) {
+			if(pq[l] > pq[r]) {
+				return l;
+			}
+			return r;
+		}
 	public :
 		int getSize() const {
 			return this -> pq.size();
@@ -40,6 +46,23 @@ class MaxPriorityQueue {
 				parentIndex = (childIndex - 1) / 2;
 			}
 		return;
+		}
+		void removeMax() {
+			swap(0, pq.size() - 1);
+			pq.pop_back();
+			int parentIndex = 0;
+			int l = (2 * parentIndex) + 1;
+			int r = (2 * parentIndex) + 2;
+			while(l < pq.size()) {
+				if(pq[parentIndex] > pq[l] && pq[parentIndex] > pq[r]) {
+					break;
+				}
+				int maxIndex = getMaxIndex(l, r);
+				swap(parentIndex, maxIndex);
+				parentIndex = maxIndex;
+				l = (2 * parentIndex) + 1;
+				r = (2 * parentIndex) + 2;
+			}
 		}
 		void printCBT() {
 			for(int i = 0; i < pq.size(); i ++) {
