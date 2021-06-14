@@ -22,4 +22,19 @@ class Trie {
 		void insert(string word) {
 			insert(this -> root, word);
 		}
+		void search(TrieNode * root, string word) {
+			if(word.size() == 0) {
+				if(root -> isTerminal == true) {
+					return true;
+				}
+				return false;
+			}
+			int index = word[0] - 'a';
+			if(root -> children[index] == NULL) {
+				return NULL;
+			}
+			TrieNode * child = root -> children[index];
+			bool smallAns = search(child, word.substr(1));
+			return smallAns;
+		}
 };
