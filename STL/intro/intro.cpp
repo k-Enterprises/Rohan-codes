@@ -64,19 +64,19 @@ int main() {
 	cout << endl;
 
 
-	map<int, int> m1; // declaring mao
+	map<int, int> m1; // declaring map
 	int arr2[] = {1, 2, 3, 4, 5, 6, 5};
 	for(int i = 0; i < 7; i ++) {
 		m1[arr2[i]] ++; // inserting in map
 	}
 	map<int, int>::iterator it3;
 	for(it3 = m1.begin(); it3 != m1.end(); it3 ++) {
-		cout << it3 -> first << ": " << it3 -> second << endl;
+		cout << it3 -> first << ": " << it3 -> second << endl; // 0X4uojahdf8138 {1,5}
 	}
-	if(m1.find(7) == m1.end()) {
+	if(m1.find(5) == m1.end()) {
 		cout << "No such element " << endl;
 	} else {
-		cout << m1.find(7) -> second << endl; // finding and accesing the element using the iterator
+		cout << m1.find(5) -> second << endl; // finding and accesing the element using the iterator
 	}
 	m1.erase(1); // erasing the key - value from map using .erase() function
 	cout << "using erase in map" << endl;
